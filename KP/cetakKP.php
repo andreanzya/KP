@@ -2,14 +2,10 @@
 
     $nosurat = 1;
     $nama = $_POST['nama'];
-    $tujuan = $_POST['alamat'];
+    $alamat = $_POST['alamat'];
     $nim = $_POST['nim'];
     $jurusan = $_POST['jurusan'];
     
-    function br2nl($tujuan){
-        return preg_replace('/\<br(\s*)?\/?\>/i', "\n", $tujuan);
-    }
-    $alamat = $tujuan;
     // membaca data dari form
     if($jurusan == 'Jurnalistik'){
         $nojrsan = 'JUR';
