@@ -5,7 +5,10 @@
     $alamat = $_POST['alamat'];
     $nim = $_POST['nim'];
     $jurusan = $_POST['jurusan'];
-    
+    $alamat2 = nl2br($alamat);
+    $splitted = explode("<br />", $alamat2);
+    $resultAlamat = "\line ".$splitted[0]."\line".$splitted[1]."\line".$splitted[2]."\line".$splitted[3];
+
     // membaca data dari form
     if($jurusan == 'Jurnalistik'){
         $nojrsan = 'JUR';
@@ -18,6 +21,9 @@
     }else{
         $nojrsan = 'error';
     }
+    foreach ($splitted as $val) {
+        $resultAlamat."\line ".$val;
+    }
     while( $nosurat <= 1000){
         // membaca isi dokumen tempate surat.rtf
         // isi dokumen dinyatakan dalam bentuk string
@@ -29,7 +35,7 @@
         $document = str_replace("#NAMA", $nama, $document);
         $document = str_replace("#NIM", $nim, $document);
         $document = str_replace("#JURUSAN", $jurusan, $document);
-        $document = str_replace("#ALAMAT", $alamat, $document);
+        $document = str_replace("#ALAMAT", $resultAlamat, $document);
         
         header("Content-type: application/msword");
         header("Content-disposition: inline; filename=suratkkp.doc");
